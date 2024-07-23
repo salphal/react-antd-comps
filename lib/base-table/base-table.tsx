@@ -6,7 +6,7 @@ import classNames from 'classnames';
 // import useClientRect from "@/hooks/useClientReact.tsx";
 
 export interface BaseTableProps extends TableProps {
-  // [key: string]: any;
+  [key: string]: any;
 
   /** 表格ID */
   id?: string;
