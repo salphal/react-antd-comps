@@ -4,15 +4,14 @@ import { Table } from 'antd';
 import type { TableProps } from 'antd';
 import classNames from 'classnames';
 // import useClientRect from "@/hooks/useClientReact.tsx";
-import type { AnyObject } from 'antd/es/_util/type';
 
-export interface BaseTableProps extends TableProps<AnyObject> {
-  [key: string]: any;
+export interface BaseTableProps extends TableProps {
+  // [key: string]: any;
 
   /** 表格ID */
   id?: string;
   /** 表格类名 */
-  clazzName?: string;
+  clazzNames?: string;
   /** 表格样式 */
   styles?: any;
 
@@ -23,7 +22,7 @@ export interface BaseTableProps extends TableProps<AnyObject> {
 
   /** 开启选择列 */
   selectable?: boolean;
-  /** 选中行事件 */
+  /** 选中行时的事件 */
   onSelectRow?: (newSelectedRow: any) => void;
 }
 
