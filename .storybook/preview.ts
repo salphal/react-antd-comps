@@ -12,9 +12,20 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    //  content center layout
     layout: 'fullscreen',
+    /**
+     * right aside
+     * https://storybook.js.org/docs/writing-docs/autodocs#configure-the-table-of-contents
+     */
     docs: {
       toc: true,
+    },
+    // stories order
+    options: {
+      storySort: {
+        order: [],
+      },
     },
   },
 };
