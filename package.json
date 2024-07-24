@@ -1,7 +1,6 @@
 {
   "name": "react-antd-pc-comps",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A template for creating React component libraries with Vite, Tailwind, and Storybook.",
   "author": "rayyamhk",
   "license": "MIT",
