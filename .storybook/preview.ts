@@ -1,6 +1,9 @@
 import type { Preview } from '@storybook/react';
 import '../lib/global.css';
 
+/**
+ * 内容展示区全局配置
+ */
 const preview: Preview = {
   parameters: {
     actions: {
@@ -12,10 +15,13 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    //  content center layout
+    /**
+     * 内容区布局配置
+     * https://storybook.js.org/docs/api/parameters#layout
+     */
     layout: 'fullscreen',
     /**
-     * right aside
+     * 开启右侧导航菜单
      * https://storybook.js.org/docs/writing-docs/autodocs#configure-the-table-of-contents
      */
     docs: {
