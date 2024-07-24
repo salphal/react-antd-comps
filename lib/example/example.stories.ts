@@ -1,28 +1,85 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import Example, { ExampleProps } from './example';
+import { ExampleStory } from './example.story';
+
+/**
+ * storyboook@8.2.5
+ *
+ * 主配置文件 .storybook > main.ts
+ * 内容区域配置文件 .storybook > preview.ts
+ */
 
 const meta = {
-  title: 'Components/Example',
-  component: Example,
-  /** https://storybook.js.org/docs/writing-docs/autodocs */
+  /**
+   * 标题( 可通过 / 分组 )
+   */
+  title: 'Example',
+  /**
+   * 组件
+   */
+  component: ExampleStory,
+  /**
+   * tags: https://storybook.js.org/docs/writing-stories/tags
+   *  - autodocs: 自动生成文档
+   *  - dev: 过滤 带有 tags.dev 的开发组件
+   *  - test: 过滤 带有 tags.test 的测试组件
+   *
+   * autodocs: https://storybook.js.org/docs/writing-docs/autodocs
+   *  - 暴露的 interface 上不能使用 [key: string]: any, 否则无法自动解析
+   *  - 默认值设置必须在 函数的第一个参数上解构 props, 并为某个属性设置默认值, 否则无法解析
+   */
   tags: ['autodocs'],
-  /** https://storybook.js.org/docs/configure/story-layout */
-  parameters: {
-    layout: 'fullscreen',
-  },
+  /**
+   * 设置 stories preview 的该如何展示
+   *  - 全局配置: .storybook > preview.ts
+   * https://storybook.js.org/docs/writing-stories/parameters
+   */
+  parameters: {},
+  /**
+   * 普通参数
+   * 优先级: Story.args > Comp.args > Global.args
+   */
   args: {
-    /** https://storybook.js.org/docs/essentials/actions#action-args */
+    /**
+     * https://storybook.js.org/docs/essentials/actions#action-args
+     */
     onClick: fn(),
   },
-  /** https://storybook.js.org/docs/api/argtypes */
+  /**
+   * 受控参数
+   *  - text: 文本输入
+   *  - select: 下啦选项
+   *  - boolean: 开关
+   *  - radio: 单选
+   * https://storybook.js.org/docs/api/arg-types#controltype
+   */
   argTypes: {
-    input: {
+    string: {
       type: 'string',
       control: {
         type: 'text',
       },
     },
+    number: {
+      type: 'number',
+      control: {
+        type: 'number',
+      },
+    },
+    boolean: {
+      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
+    },
+    object: {
+      type: 'object',
+      control: {
+        type: 'object',
+      },
+    },
+
     select: {
       type: 'string',
       control: {
@@ -30,10 +87,64 @@ const meta = {
       },
       options: ['option1', 'option2', 'option3'],
     },
-    switch: {
-      type: 'boolean',
+    'multi-select': {
+      type: 'string',
       control: {
-        type: 'boolean',
+        type: 'multi-select',
+      },
+      options: ['option1', 'option2', 'option3'],
+    },
+    radio: {
+      type: 'string',
+      control: {
+        type: 'radio',
+      },
+      options: ['option1', 'option2', 'option3'],
+    },
+    'inline-radio': {
+      type: 'string',
+      control: {
+        type: 'inline-radio',
+      },
+      options: ['option1', 'option2', 'option3'],
+    },
+    check: {
+      type: 'string',
+      control: {
+        type: 'check',
+      },
+      options: ['option1', 'option2', 'option3'],
+    },
+
+    /** 范围滑块 */
+    range: {
+      type: 'range',
+      control: {
+        type: 'range',
+        min: 1,
+        max: 30,
+        step: 1,
+      },
+    },
+    /** 文件选择器 */
+    file: {
+      type: 'file',
+      control: {
+        type: 'file',
+      },
+    },
+    /** 颜色选择器 */
+    color: {
+      type: 'color',
+      control: {
+        type: 'color',
+      },
+    },
+    /** 日期选择器 */
+    date: {
+      type: 'date',
+      control: {
+        type: 'date',
       },
     },
   },
@@ -42,14 +153,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+/**
+ * 公共默认属性赋值
+ */
 const defaultProps: ExampleProps = {
-  input: 'defaultValue',
-  select: 'option2',
-  switch: false,
+  string: 'string',
+  number: 0,
+  boolean: false,
+  object: {
+    foo: 'bar',
+  },
 };
 
+/**
+ *
+ */
 export const DefaultExample: Story = {
-  /** https://storybook.js.org/docs/writing-stories/args */
   args: {
     ...defaultProps,
   },
