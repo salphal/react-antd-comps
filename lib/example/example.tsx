@@ -1,9 +1,4 @@
-import React, {
-  useEffect,
-  useImperativeHandle,
-  type ForwardRefRenderFunction,
-  type Ref,
-} from 'react';
+import React, { useImperativeHandle, type ForwardRefRenderFunction, type Ref } from 'react';
 import classNames from 'classnames';
 
 /**
