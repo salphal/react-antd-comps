@@ -27,7 +27,9 @@ const preview: Preview = {
     docs: {
       toc: true,
     },
-    // stories order
+    /**
+     * 故事排序
+     */
     options: {
       storySort: {
         order: [],
