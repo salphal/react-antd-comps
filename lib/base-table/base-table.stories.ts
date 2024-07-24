@@ -10,25 +10,13 @@ const meta = {
   /** https://storybook.js.org/docs/writing-docs/autodocs */
   tags: ['autodocs'],
   /** https://storybook.js.org/docs/configure/story-layout */
-  parameters: {
-    // layout: 'fullscreen',
-    // docs: {
-    //   toc: true,
-    // },
-  },
+  parameters: {},
   args: {
-    // dataSource: [],
     /** https://storybook.js.org/docs/essentials/actions#action-args */
     onSelectRow: fn(),
   },
   /** https://storybook.js.org/docs/api/argtypes */
-  argTypes: {
-    id: {
-      control: {
-        type: 'text',
-      },
-    },
-  },
+  argTypes: {},
 } satisfies Meta<typeof BaseTable>;
 
 export default meta;
