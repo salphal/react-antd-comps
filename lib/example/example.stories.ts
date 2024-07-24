@@ -87,7 +87,7 @@ const meta = {
       },
       options: ['option1', 'option2', 'option3'],
     },
-    'multi-select': {
+    multiSelect: {
       type: 'string',
       control: {
         type: 'multi-select',
@@ -101,7 +101,7 @@ const meta = {
       },
       options: ['option1', 'option2', 'option3'],
     },
-    'inline-radio': {
+    inlineRadio: {
       type: 'string',
       control: {
         type: 'inline-radio',
@@ -115,8 +115,14 @@ const meta = {
       },
       options: ['option1', 'option2', 'option3'],
     },
+    inlineCheck: {
+      type: 'string',
+      control: {
+        type: 'inline-check',
+      },
+      options: ['option1', 'option2', 'option3'],
+    },
 
-    /** 范围滑块 */
     range: {
       type: 'range',
       control: {
@@ -126,21 +132,18 @@ const meta = {
         step: 1,
       },
     },
-    /** 文件选择器 */
     file: {
       type: 'file',
       control: {
         type: 'file',
       },
     },
-    /** 颜色选择器 */
     color: {
       type: 'color',
       control: {
         type: 'color',
       },
     },
-    /** 日期选择器 */
     date: {
       type: 'date',
       control: {
@@ -154,15 +157,24 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * 公共默认属性赋值
+ * 设置属性初始值
  */
 const defaultProps: ExampleProps = {
-  string: 'string',
+  string: 'hello world',
   number: 0,
   boolean: false,
-  object: {
-    foo: 'bar',
-  },
+  object: {},
+  select: 'option2',
+  multiSelect: ['option1', 'option2'],
+  radio: 'option2',
+  inlineRadio: 'option2',
+  check: ['option2', 'option3'],
+  inlineCheck: ['option1', 'option2'],
+  range: 15,
+  color: '#fff',
+  file: {},
+  date: new Date().valueOf(),
+  onClick: () => {},
 };
 
 /**
