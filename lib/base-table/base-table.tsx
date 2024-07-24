@@ -3,17 +3,16 @@ import type { Ref } from 'react';
 import { Table } from 'antd';
 import type { TableProps } from 'antd';
 import classNames from 'classnames';
+
 // import useClientRect from "@/hooks/useClientReact.tsx";
 
 export interface BaseTableProps extends TableProps {
-  [key: string]: any;
-
   /** 表格ID */
   id?: string;
   /** 表格类名 */
   clazzNames?: string;
   /** 表格样式 */
-  styles?: any;
+  styles?: { [key: string]: any };
 
   /** 父级ID 用于设置自适应高度 */
   wrapperId?: string;
@@ -36,14 +35,14 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
 ) => {
   const {
     wrapperId = '',
+    height,
 
-    dataSource = [],
     columns = [],
+    dataSource = [],
 
     id = '',
     clazzNames = [],
     styles = {},
-    height,
 
     selectable = false,
     onSelectRow,
