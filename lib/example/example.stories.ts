@@ -166,7 +166,7 @@ const defaultProps: ExampleProps = {
 };
 
 /**
- *
+ * 创建不同参数的示例
  */
 export const DefaultExample: Story = {
   args: {
@@ -174,6 +174,9 @@ export const DefaultExample: Story = {
   },
 };
 
+/**
+ * 创建不同参数的示例
+ */
 export const AnotherExample: Story = {
   args: {
     ...defaultProps,
