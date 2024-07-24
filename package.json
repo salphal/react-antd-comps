@@ -1,5 +1,5 @@
 {
-  "name": "react-antd-pc-comps",
+  "name": "@alphal/react-antd-pc-comps",
   "version": "0.0.1",
   "description": "A template for creating React component libraries with Vite, Tailwind, and Storybook.",
   "author": "rayyamhk",
