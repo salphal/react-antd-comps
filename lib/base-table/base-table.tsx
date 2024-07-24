@@ -2,20 +2,10 @@ import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from
 import type { Ref } from 'react';
 import { Table } from 'antd';
 import type { TableProps } from 'antd';
-import classNames from 'classnames';
 
 // import useClientRect from "@/hooks/useClientReact.tsx";
 
 export interface BaseTableProps extends TableProps {
-  /** 表格ID */
-  id?: string;
-  /** 表格类名 */
-  clazzNames?: string;
-  /** 表格样式 */
-  styles?: { [key: string]: any };
-
-  /** 父级ID 用于设置自适应高度 */
-  wrapperId?: string;
   /** 自定义表格高度 */
   height?: number | string;
 
@@ -34,15 +24,10 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
   ref: Ref<BaseTableRef | HTMLDivElement>,
 ) => {
   const {
-    wrapperId = '',
     height,
 
     columns = [],
     dataSource = [],
-
-    id = '',
-    clazzNames = [],
-    styles = {},
 
     selectable = false,
     onSelectRow,
@@ -51,7 +36,9 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
   } = props;
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+
   const selectedRowKeysRef = useRef<any>(null);
+  const tableWrapDomRef = useRef<any>(null);
 
   // Customize instance values exposed to parent components
   useImperativeHandle(ref, () => ({
@@ -60,12 +47,19 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
   }));
 
   useEffect(() => {
+    const baseTableDom = document.querySelector('.antd-base-table');
+    if (baseTableDom && baseTableDom instanceof Element) {
+      tableWrapDomRef.current = baseTableDom.parentNode;
+    }
+  }, []);
+
+  useEffect(() => {
     selectedRowKeysRef.current = selectedRowKeys;
   }, [selectedRowKeys]);
 
-  // const { height: contentHeight } = useClientRect({ id: wrapperId });
+  // const { height: parentNodeHeight } = useClientRect({ domRef: tableWrapDomRef });
 
-  const contentHeight = '';
+  const parentNodeHeight = '';
 
   const rowSelectionOnChange = (selectedRowKeys: React.Key[]) => {
     onSelectRow && onSelectRow(selectedRowKeys);
@@ -79,18 +73,18 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
   };
 
   const tableContentHeight = useMemo(() => {
-    const defaultContentHeight = 400;
-    const tableHeadHeight = 60;
+    const defaultHeight = 400;
+    const tableHeaderHeight = 60;
     return () => {
       if (height) {
         return height;
-      } else if (!!wrapperId && contentHeight) {
-        return contentHeight - tableHeadHeight;
+      } else if (selectedRowKeysRef.current instanceof Element && parentNodeHeight) {
+        return parentNodeHeight - tableHeaderHeight;
       } else {
-        return defaultContentHeight;
+        return defaultHeight;
       }
     };
-  }, [wrapperId, contentHeight, height]);
+  }, [parentNodeHeight, height]);
 
   const resetTableStatus = () => {
     setSelectedRowKeys([]);
@@ -99,9 +93,7 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
 
   return (
     <Table
-      id={id}
-      className={classNames([...clazzNames])}
-      rowKey={(record: any) => record.key || record.id}
+      rowKey={(record: any) => record.id || record.key}
       dataSource={dataSource}
       columns={columns}
       rowSelection={selectable ? tableRowSelection : false}
@@ -110,7 +102,6 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
         y: tableContentHeight(),
         x: 'max-content',
       }}
-      style={{ ...styles }}
       {...resetProps}
     />
   );

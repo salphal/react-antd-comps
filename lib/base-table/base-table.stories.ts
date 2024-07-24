@@ -7,16 +7,19 @@ import { BaseTableStory } from './base-table.story';
 const meta = {
   title: 'Components/BaseTable',
   component: BaseTableStory,
-  /** https://storybook.js.org/docs/writing-docs/autodocs */
   tags: ['autodocs'],
-  /** https://storybook.js.org/docs/configure/story-layout */
   parameters: {},
   args: {
-    /** https://storybook.js.org/docs/essentials/actions#action-args */
     onSelectRow: fn(),
   },
-  /** https://storybook.js.org/docs/api/argtypes */
-  argTypes: {},
+  argTypes: {
+    height: {
+      type: 'number',
+      control: {
+        type: 'number',
+      },
+    },
+  },
 } satisfies Meta<typeof BaseTable>;
 
 export default meta;
