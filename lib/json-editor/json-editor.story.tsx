@@ -5,10 +5,10 @@ export const JsonEditorStory = React.forwardRef<any, JsonEditorProps>(
   (
     {
       mode = 'text',
-      content = {
-        json: {},
-        text: null,
-      } as IJsonEditorContent,
+      // content = {
+      //   json: {},
+      //   text: null,
+      // } as IJsonEditorContent,
       readOnly = false,
       mainMenuBar = true,
       navigationBar = true,
@@ -21,7 +21,7 @@ export const JsonEditorStory = React.forwardRef<any, JsonEditorProps>(
   ) => {
     const props = {
       mode,
-      content,
+      // content,
       readOnly,
       mainMenuBar,
       navigationBar,

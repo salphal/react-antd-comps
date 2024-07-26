@@ -43,7 +43,7 @@ export interface JsonEditorProps {
   /** 操作模式 */
   mode?: 'text' | 'tree' | 'table';
   /** JSON 内容 */
-  content?: IJsonEditorContent;
+  content: IJsonEditorContent;
   /** 是否只读 */
   readOnly?: boolean;
   /** 是否显示控制条 */
@@ -98,10 +98,11 @@ const JsonEditor: ForwardRefRenderFunction<JsonEditorRef, JsonEditorProps> = (
   useEffect(() => {
     if (refEditor.current) {
       console.log('update props', props);
+      const { content, ...restProps } = props;
       refEditor.current.updateProps({
         content: props.content || defaultContent,
         onChange: jsonEditorOnChange,
-        ...props,
+        ...restProps,
       });
     }
   }, [props]);
