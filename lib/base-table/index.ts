@@ -1,1 +1,3 @@
-export * from './base-table.tsx';
+import BaseTable from '@lib/base-table/base-table.tsx';
+
+export default BaseTable;
