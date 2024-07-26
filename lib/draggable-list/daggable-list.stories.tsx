@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import DraggableList, { type DraggableListProps } from './draggable-list';
 import { DraggableListStory } from './daggable-list.story';
+import { mockDraggableListDataSource } from './daggable-list.mock';
 
 const meta = {
   title: 'Components/DraggableList',
@@ -21,7 +22,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultProps: DraggableListProps = {
-  dataSource: [],
+  dataSource: mockDraggableListDataSource,
   setDataSource: () => {},
 };
 

@@ -5,7 +5,7 @@ import { baseTableColumns, baseTableDataSource } from './base-table.mock';
 import { BaseTableStory } from './base-table.story';
 
 const meta = {
-  title: 'Components/BaseTable',
+  title: 'Components/Table/BaseTable',
   component: BaseTableStory,
   tags: ['autodocs'],
   parameters: {},

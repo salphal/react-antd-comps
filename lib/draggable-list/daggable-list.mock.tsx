@@ -1,4 +1,5 @@
 import Mock from 'mockjs';
+import React from 'react';
 
 export const draggableListFormData = Mock.mock({
   id: '@guid()',
@@ -37,4 +38,12 @@ export const draggableListDataSource = Mock.mock(() => {
       },
     ],
   }).dataSource;
+});
+
+export const mockDraggableListDataSource = draggableListDataSource.map((v: any) => {
+  const { id, ...rest } = v;
+  return {
+    ...v,
+    render: () => <div className={'m-2'}>{JSON.stringify(rest)}</div>,
+  };
 });
