@@ -2,12 +2,15 @@ import type { StorybookConfig } from '@storybook/react-vite';
 import { withoutVitePlugins } from '@storybook/builder-vite';
 
 const config: StorybookConfig = {
-  stories: ['../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  /** stories 文件范围 */
+  stories: ['../lib/**/*.mdx', '../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: ['@storybook/addon-essentials', '@storybook/addon-actions', '@chromatic-com/storybook'],
 
   framework: {
     name: '@storybook/react-vite',
-    options: {},
+    options: {
+      legacyRootApi: true,
+    },
   },
 
   docs: {},
