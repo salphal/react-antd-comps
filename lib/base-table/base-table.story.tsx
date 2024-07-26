@@ -13,6 +13,6 @@ export const BaseTableStory = React.forwardRef<any, BaseTableProps>(
   },
 );
 
-BaseTableStory.displayName = 'BaseTableStory';
+BaseTableStory.displayName = 'BaseTable';
 
 export default React.memo(BaseTableStory);
