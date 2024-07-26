@@ -1,11 +1,19 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {type ForwardRefRenderFunction, type Ref, useState, useEffect, useRef, useImperativeHandle} from "react";
 
 export interface ${COMP_NAME}Props {
 }
 
-const ${COMP_NAME}: React.FC<${COMP_NAME}Props> = (props: ${COMP_NAME}Props) => {
+export interface ${COMP_NAME}Ref {
+}
+
+const ${COMP_NAME}: ForwardRefRenderFunction<${COMP_NAME}Ref, ${COMP_NAME}Props> = (
+  props: ${COMP_NAME}Props,
+  ref: Ref<${COMP_NAME}Ref | HTMLDivElement>,
+) => {
 
   const {} = props;
+
+  useImperativeHandle(ref, () => ({}));
 
   useEffect(() => {}, []);
 
@@ -20,4 +28,4 @@ const ${COMP_NAME}: React.FC<${COMP_NAME}Props> = (props: ${COMP_NAME}Props) => 
   );
 };
 
-export default React.memo(${COMP_NAME});
+export default React.forwardRef(React.memo(${COMP_NAME}));
