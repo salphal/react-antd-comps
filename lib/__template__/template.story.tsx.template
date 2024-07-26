@@ -2,7 +2,7 @@ import React from 'react';
 import ${COMP_NAME}, {type ${COMP_NAME}Props} from "./${COMP_PATH}";
 
 
-export const ${COMP_NAME}Story = React.forwardRef<${COMP_NAME}Props, any>(
+export const ${COMP_NAME}Story = React.forwardRef<any, ${COMP_NAME}Props>(
   (
     {
       ...rest
