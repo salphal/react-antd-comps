@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import JsonViewer, { type JsonViewerProps } from "./json-viewer";
+import JsonViewer, { type JsonViewerProps } from './json-viewer';
 import { JsonViewerStory } from './json-viewer.story';
-
 
 const meta = {
   title: 'Components/JsonViewer',
@@ -17,26 +16,22 @@ const meta = {
   args: {
     onClick: fn(),
   },
-  argTypes: {
-  },
+  argTypes: {},
 } satisfies Meta<typeof JsonViewer>;
-
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-
-const defaultProps: JsonViewerProps = {
-};
+const defaultProps: JsonViewerProps = {};
 
 export const DefaultJsonViewer: Story = {
   args: {
-    ...defaultProps
-  }
+    ...defaultProps,
+  },
 };
 
 export const AnotherJsonViewer: Story = {
   args: {
-    ...defaultProps
-  }
+    ...defaultProps,
+  },
 };
