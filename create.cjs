@@ -24,7 +24,7 @@ if (compName && !compPath) {
 const replacements = {
   COMP_NAME: compName.length > 1 ? capitalizeFirstLetter(compName) : 'Template',
   COMP_PATH: compPath || 'template',
-  compName,
+  compName: lowercaseFirstLetter(compName),
 };
 
 /**
@@ -169,6 +169,15 @@ function clearAllOnDir(dirPath) {
  */
 function capitalizeFirstLetter(fileName) {
   return fileName.replace(/(^\w)/, (match) => match.toUpperCase());
+}
+
+/**
+ * 将文件名第一个字母小写
+ * @param fileName {string} - 文件名
+ * @return {string}
+ */
+function lowercaseFirstLetter(fileName) {
+  return fileName.replace(/(^\w)/, (match) => match.toLowerCase());
 }
 
 /**
