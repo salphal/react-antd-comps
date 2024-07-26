@@ -13,7 +13,6 @@ import DraggableItem, { type IDraggableItem } from './draggable-item.tsx';
 const draggableListStyle = {
   display: 'flex',
   overflow: 'hidden auto',
-  padding: '20px 20px 0 0',
   flexFlow: 'column nowrap',
   height: '100%',
   width: '100%',

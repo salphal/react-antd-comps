@@ -8,10 +8,16 @@ export const DraggableListStory = React.forwardRef<any, DraggableListProps>(
     const [data, setData] = useState<Array<IDraggableItem>>([...mockDraggableListDataSource]);
     const props: DraggableListProps = { dataSource: data, setDataSource: setData, ...rest };
     return (
-      <DraggableList
-        ref={ref}
-        {...props}
-      />
+      <div
+        style={{
+          padding: 20,
+        }}
+      >
+        <DraggableList
+          ref={ref}
+          {...props}
+        />
+      </div>
     );
   },
 );
