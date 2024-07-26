@@ -39,6 +39,6 @@ export const JsonEditorStory = React.forwardRef<any, JsonEditorProps>(
   },
 );
 
-JsonEditorStory.displayName = 'JsonEditor';
+JsonEditorStory.displayName = 'JsonEditorStory';
 
 export default React.memo(JsonEditorStory);
