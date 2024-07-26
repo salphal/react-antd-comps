@@ -8,7 +8,6 @@ import type { TableProps } from 'antd';
 export interface BaseTableProps extends TableProps {
   /** 自定义表格高度 */
   height?: number | string;
-
   /** 开启选择列 */
   selectable?: boolean;
   /** 选中行时的事件 */

@@ -4,6 +4,9 @@ import BaseTable, { BaseTableProps } from './base-table';
 import { baseTableColumns, baseTableDataSource } from './base-table.mock';
 import { BaseTableStory } from './base-table.story';
 
+/**
+ * 自动处理 Table 的高度( 始终等于父容器的高度 )
+ */
 const meta = {
   title: 'Components/Table/BaseTable',
   component: BaseTableStory,
@@ -31,12 +34,6 @@ const defaultProps: BaseTableProps = {
 };
 
 export const DefaultBaseTable: Story = {
-  args: {
-    ...defaultProps,
-  },
-};
-
-export const AnotherBaseTable: Story = {
   args: {
     ...defaultProps,
   },
