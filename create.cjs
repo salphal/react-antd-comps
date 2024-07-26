@@ -186,7 +186,6 @@ function convertReallyFileName(fileName, compPath) {
 }
 
 (async function create() {
-
   /** 获取所有模版文件信息列表 */
   const allFilePaths = await getAllFilePathsByDirPath(templateDirPath);
 
