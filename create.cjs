@@ -27,6 +27,11 @@ const replacements = {
   compName,
 };
 
+/**
+ * 获取指定目录下所有文件的完整路径列表
+ * @param dirPath {string} - 文件夹路径
+ * @return {Promise<unknown>}
+ */
 async function getAllFilePathsByDirPath(dirPath) {
   return new Promise((resolve, reject) => {
     fs.readdir(dirPath, (err, fileNames) => {
@@ -56,9 +61,14 @@ async function getAllFilePathsByDirPath(dirPath) {
   });
 }
 
-async function replaceFile(filePaths) {
+/**
+ * 替换模版文件中的变量
+ * @param filePath {string} - 文件路径
+ * @return {Promise<unknown>}
+ */
+async function replaceFile(filePath) {
   return new Promise((resolve, reject) => {
-    fs.readFile(filePaths, 'utf8', (err, data) => {
+    fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
         reject(err);
         return;
@@ -72,21 +82,12 @@ async function replaceFile(filePaths) {
   });
 }
 
-function clearAllOnDir(dirPath) {
-  const files = fs.readdirSync(dirPath);
-  files.forEach((file) => {
-    const filePath = `${dirPath}/${file}`;
-    const stats = fs.statSync(filePath);
-    if (stats.isDirectory()) {
-      clearAllOnDir(filePath);
-    } else {
-      fs.unlinkSync(filePath);
-      console.log(`[ Log ]: Success delete ${file} file`);
-    }
-  });
-}
-
-async function initConvertAllFiles(allFilePaths) {
+/**
+ * 将模版文件夹中的所有文件替换变量并输出到指定文件夹下
+ * @param allFilePaths {Array<{fileName: string, fullPath: string}>} - 文件信息列表
+ * @return {Promise<void>}
+ */
+async function convertAllFiles(allFilePaths) {
   if (!Array.isArray(allFilePaths) || !allFilePaths.length) return;
 
   const isCreatedDir = await createDir(outputDirPath, compPath);
@@ -94,6 +95,9 @@ async function initConvertAllFiles(allFilePaths) {
 
   for (let i = 0; i < allFilePaths.length; i++) {
     const { fileName, fullPath } = allFilePaths[i];
+
+    if (!fileName || !fullPath) return;
+
     const content = await replaceFile(fullPath);
     const name = convertReallyFileName(fileName, compPath);
 
@@ -107,6 +111,12 @@ async function initConvertAllFiles(allFilePaths) {
   }
 }
 
+/**
+ * 创建文件夹
+ * @param folderPath {string} -
+ * @param folderName {string} -
+ * @return {Promise<unknown>}
+ */
 async function createDir(folderPath, folderName) {
   return new Promise(async (resolve, reject) => {
     const fullPath = path.join(folderPath, folderName);
@@ -134,10 +144,39 @@ async function createDir(folderPath, folderName) {
   });
 }
 
-function capitalizeFirstLetter(str) {
-  return str.replace(/(^\w)/, (match) => match.toUpperCase());
+/**
+ * 清空文件夹下的所有文件
+ * @param dirPath {string} - 文件夹路径
+ */
+function clearAllOnDir(dirPath) {
+  const files = fs.readdirSync(dirPath);
+  files.forEach((file) => {
+    const filePath = `${dirPath}/${file}`;
+    const stats = fs.statSync(filePath);
+    if (stats.isDirectory()) {
+      clearAllOnDir(filePath);
+    } else {
+      fs.unlinkSync(filePath);
+      console.log(`[ Log ]: Success delete ${file} file`);
+    }
+  });
 }
 
+/**
+ * 将文件名第一个字母大写
+ * @param fileName {string} - 文件名
+ * @return {string}
+ */
+function capitalizeFirstLetter(fileName) {
+  return fileName.replace(/(^\w)/, (match) => match.toUpperCase());
+}
+
+/**
+ * 替换模版文件名为真实文件名
+ * @param fileName {string} - 文件名
+ * @param compPath {string} - 文件路径
+ * @return {string}
+ */
 function convertReallyFileName(fileName, compPath) {
   const name = fileName
     .replace(/(^[a-zA-Z]+)\./, (match) => (match === 'index.' ? 'index.' : `${compPath}.`))
@@ -146,7 +185,9 @@ function convertReallyFileName(fileName, compPath) {
   return name;
 }
 
-(async function () {
+(async function create() {
+
+  /** 获取所有模版文件信息列表 */
   const allFilePaths = await getAllFilePathsByDirPath(templateDirPath);
 
   if (!allFilePaths.length) {
@@ -154,5 +195,6 @@ function convertReallyFileName(fileName, compPath) {
     return;
   }
 
-  await initConvertAllFiles(allFilePaths);
+  /** 转换模版文件 */
+  await convertAllFiles(allFilePaths);
 })();
