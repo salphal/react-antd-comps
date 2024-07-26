@@ -1,0 +1,23 @@
+import React, {useState, useEffect, useRef} from "react";
+
+export interface ${COMP_NAME}Props {
+}
+
+const ${COMP_NAME}: React.FC<${COMP_NAME}Props> = (props: ${COMP_NAME}Props) => {
+
+  const {} = props;
+
+  useEffect(() => {}, []);
+
+  return (
+    <React.Fragment>
+
+      <div className={""}>
+        hello world
+      </div>
+
+    </React.Fragment>
+  );
+};
+
+export default React.memo(${COMP_NAME});

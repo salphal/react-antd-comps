@@ -1,0 +1,25 @@
+import React from 'react';
+import ${COMP_NAME}, {type ${COMP_NAME}Props} from "./${COMP_PATH}";
+
+
+export const ${COMP_NAME}Story = React.forwardRef<${COMP_NAME}Props, any>(
+  (
+    {
+      ...rest
+    },
+    ref,
+  ) => {
+    const props = { ...rest };
+    return (
+      <${COMP_NAME}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
+
+
+${COMP_NAME}Story.displayName = '${COMP_NAME}Story';
+
+export default React.memo(${COMP_NAME}Story);

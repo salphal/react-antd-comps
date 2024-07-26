@@ -1,0 +1,42 @@
+import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
+import ${COMP_NAME}, { type ${COMP_NAME}Props } from "./${COMP_PATH}";
+import { ${COMP_NAME}Story } from './${COMP_PATH}.story';
+
+
+const meta = {
+  title: 'Components/${COMP_NAME}',
+  component: ${COMP_NAME}Story,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      toc: true,
+    },
+  },
+  args: {
+    onClick: fn(),
+  },
+  argTypes: {
+  },
+} satisfies Meta<typeof ${COMP_NAME}>;
+
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+
+const defaultProps: ${COMP_NAME}Props = {
+};
+
+export const Default${COMP_NAME}: Story = {
+  args: {
+    ...defaultProps
+  }
+};
+
+export const Another${COMP_NAME}: Story = {
+  args: {
+    ...defaultProps
+  }
+};

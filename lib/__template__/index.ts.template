@@ -1,0 +1,3 @@
+import ${COMP_NAME} from "./${COMP_PATH}";
+
+export default ${COMP_NAME};
