@@ -5,7 +5,7 @@ import { DraggableListStory } from './daggable-list.story';
 import { mockDraggableListDataSource } from './daggable-list.mock';
 
 const meta = {
-  title: 'Components/DraggableList',
+  title: 'Components/Draggable/DraggableList',
   component: DraggableListStory,
   tags: ['autodocs'],
   parameters: {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import DraggableList, { type DraggableListProps } from './draggable-list.tsx';
-import { type IDraggableItem } from '@lib/draggable-list/draggable-item.tsx';
-import { mockDraggableListDataSource } from '@lib/draggable-list/daggable-list.mock.tsx';
+import { type IDraggableItem } from '@lib/daraggable/draggable-list/draggable-item.tsx';
+import { mockDraggableListDataSource } from '@lib/daraggable/draggable-list/daggable-list.mock.tsx';
 import classNames from 'classnames';
 
 export const DraggableListStory = React.forwardRef<any, DraggableListProps>(

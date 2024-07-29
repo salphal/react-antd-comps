@@ -28,4 +28,4 @@ const ${COMP_NAME}: ForwardRefRenderFunction<${COMP_NAME}Ref, ${COMP_NAME}Props>
   );
 };
 
-export default React.forwardRef(React.memo(${COMP_NAME}));
+export default React.forwardRef(${COMP_NAME});

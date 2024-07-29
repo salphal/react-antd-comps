@@ -1,7 +1,7 @@
 import './global.css';
 
-import BaseTable from '@lib/base-table';
-import DraggableList from '@lib/draggable-list';
-import JsonEditor from '@lib/json-editor';
+import BaseTable from '@lib/table/base-table';
+import DraggableList from '@lib/daraggable/draggable-list';
+import JsonEditor from '@lib/json/json-editor';
 
 export { BaseTable, DraggableList, JsonEditor };
