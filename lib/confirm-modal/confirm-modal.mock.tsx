@@ -1,5 +1,4 @@
-import Mock from "mockjs";
-
+import Mock from 'mockjs';
 
 export const confirmModalFormData = Mock.mock({
   id: '@guid()',
@@ -28,12 +27,14 @@ export const confirmModalColumns = [
 
 export const confirmModalDataSource = Mock.mock(() => {
   return Mock.mock({
-    'dataSource|5-10': [{
-      [`key|+1`]: 0,
-      id: '@guid()',
-      name: '@cname()',
-      age: '@integer(10, 100)',
-      gender: "@pick(['male','female'])",
-    }]
+    'dataSource|5-10': [
+      {
+        [`key|+1`]: 0,
+        id: '@guid()',
+        name: '@cname()',
+        age: '@integer(10, 100)',
+        gender: "@pick(['male','female'])",
+      },
+    ],
   }).dataSource;
 });

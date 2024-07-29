@@ -1,16 +1,20 @@
-import React, {type ForwardRefRenderFunction, type Ref, useState, useEffect, useRef, useImperativeHandle} from "react";
+import React, {
+  type ForwardRefRenderFunction,
+  type Ref,
+  useState,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+} from 'react';
 
-export interface BaseFormProps {
-}
+export interface BaseFormProps {}
 
-export interface BaseFormRef {
-}
+export interface BaseFormRef {}
 
 const BaseForm: ForwardRefRenderFunction<BaseFormRef, BaseFormProps> = (
   props: BaseFormProps,
   ref: Ref<BaseFormRef | HTMLDivElement>,
 ) => {
-
   const {} = props;
 
   useImperativeHandle(ref, () => ({}));
@@ -19,11 +23,7 @@ const BaseForm: ForwardRefRenderFunction<BaseFormRef, BaseFormProps> = (
 
   return (
     <React.Fragment>
-
-      <div className={""}>
-        hello world
-      </div>
-
+      <div className={''}>hello world</div>
     </React.Fragment>
   );
 };
