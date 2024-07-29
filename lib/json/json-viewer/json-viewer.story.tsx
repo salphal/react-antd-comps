@@ -1,5 +1,5 @@
 import React from 'react';
-import JsonViewer, { type JsonViewerProps } from './json-viewer';
+import JsonViewer, { type JsonViewerProps } from './json-viewer.tsx';
 
 export const JsonViewerStory = React.forwardRef<any, JsonViewerProps>(({ ...rest }, ref) => {
   const props = { ...rest };

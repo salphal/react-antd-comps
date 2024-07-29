@@ -4,7 +4,7 @@ import { JsonEditorStory } from './json-editor.story';
 import { jsonEditorFormData } from './json-editor.mock';
 
 const meta = {
-  title: 'Components/JsonEditor',
+  title: 'Components/Json/JsonEditor',
   component: JsonEditorStory,
   tags: ['autodocs'],
   parameters: {
