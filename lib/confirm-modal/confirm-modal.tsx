@@ -1,0 +1,367 @@
+import React, {
+  type ForwardRefRenderFunction,
+  type ReactNode,
+  type Ref,
+  useImperativeHandle,
+  useState,
+} from 'react';
+import { CheckCircleFilled, CloseOutlined, InfoCircleFilled } from '@ant-design/icons';
+import { Button, Modal, Spin } from 'antd';
+import { Scrollbars } from 'react-custom-scrollbars-2';
+import './index.scss';
+
+type MsgIconTypes = 'info' | 'success' | 'danger';
+
+const modalIconList: any = {
+  info: <InfoCircleFilled style={{ color: '#0166FF' }} />,
+  success: <CheckCircleFilled style={{ color: '#138d49' }} />,
+  danger: <InfoCircleFilled style={{ color: '#f31c1c' }} />,
+};
+
+/**
+ * 弹窗加载显示
+ */
+const ModalLoading = (props: any) => {
+  const { loading = false } = props;
+  return (
+    loading && (
+      <Spin
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          zIndex: 9999,
+          transform: 'translate(-50%, -50%)',
+        }}
+      />
+    )
+  );
+};
+
+/**
+ * 弹窗遮罩层
+ */
+const ModalMask = (props: any) => {
+  const { isShow = false, onClick = () => {} } = props;
+  return (
+    isShow && (
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'transparent',
+          zIndex: 999,
+          cursor: 'not-allowed',
+        }}
+        onClick={onClick}
+      />
+    )
+  );
+};
+
+interface MessageModalProps {
+  message?: string;
+  messageIconType?: MsgIconTypes;
+}
+
+/**
+ * 消息弹窗
+ */
+const MessageModal = (props: MessageModalProps) => {
+  const { message, messageIconType } = props;
+  let icon: any = null;
+  if (typeof messageIconType === 'string' && Object.keys(modalIconList).includes(messageIconType)) {
+    icon = modalIconList[messageIconType];
+  }
+  return (
+    <div
+      style={{
+        padding: '30px 0 60px 0',
+        textAlign: 'center',
+        fontSize: '18px',
+      }}
+    >
+      {icon && <span style={{ marginRight: '8px' }}>{icon}</span>}
+      <span>{message}</span>
+    </div>
+  );
+};
+
+interface IModalFooterProps {
+  loading?: boolean;
+  confirmBtnText?: string;
+  cancelBtnText?: string;
+  onConfirm?: () => void;
+  onCancel?: () => void;
+}
+
+/**
+ * 默认弹窗底部控制按钮
+ */
+const ModalFooter = (props: IModalFooterProps) => {
+  const { loading, confirmBtnText, cancelBtnText, onConfirm, onCancel } = props;
+  return (
+    <div className="confirm-modal-footer right">
+      <Button
+        type="primary"
+        onClick={onConfirm}
+        loading={loading}
+      >
+        {confirmBtnText}
+      </Button>
+      <Button
+        onClick={onCancel}
+        disabled={loading}
+      >
+        {cancelBtnText}
+      </Button>
+    </div>
+  );
+};
+
+export interface ModalStyle {
+  /** 弹窗距离顶部的距离*/
+  top?: string;
+  /** 弹窗宽度 */
+  width?: string | number;
+  /** 弹窗高度 */
+  height?: string | number;
+
+  header?: any;
+  body?: any;
+  footer?: any;
+  mask?: any;
+  content?: any;
+}
+
+export interface ConfirmModalProps {
+  /** 弹窗标题 */
+  title?: ReactNode;
+  /** 是否在加载状态 */
+  open?: boolean;
+  /** 是否在加载状态 */
+  loading?: boolean;
+  /** 是否禁用状态 */
+  disabled?: boolean;
+
+  /** 是否自动关闭 */
+  closedAble?: boolean;
+  /** 内容区域是否根据 style.body.height 高度滚动 */
+  scrollable?: boolean;
+
+  /** 自定义底部控制按钮 */
+  footer?: ReactNode | null;
+
+  /** 弹窗消息内容 */
+  message?: string;
+  /** 弹窗消息icon类型 */
+  msgIconType?: MsgIconTypes;
+
+  /** 自定义样式对象 */
+  style?: ModalStyle;
+
+  /** 确认按钮文字 */
+  confirmBtnText?: string;
+  /** 取消按钮文字 */
+  cancelBtnText?: string;
+
+  /** 确认按钮事件 */
+  onConfirm?: () => void;
+  /** 取消按钮事件 */
+  onCancel?: () => void;
+  /** 弹窗关闭事件 */
+  onClose?: () => void;
+  /** 遮罩层点击事件 */
+  maskOnClick?: () => void;
+
+  /** 子元素 */
+  children?: any;
+}
+
+interface ConfirmModalRef {
+  isOpen: boolean;
+  setIsOpen: (value: boolean) => void;
+  showModal: () => void;
+  hideModal: () => void;
+}
+
+const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps> = (
+  props: ConfirmModalProps,
+  ref: Ref<ConfirmModalRef | HTMLDivElement>,
+) => {
+  const {
+    title = '标题',
+    open,
+
+    loading = false,
+    disabled = false,
+
+    footer,
+
+    closedAble = true,
+    scrollable = true,
+
+    message = '',
+    msgIconType,
+
+    style: { top = '20%', width = 500, height = 'auto', ...restStyles } = {
+      top: '20%',
+      width: 500,
+      height: 'auto',
+    },
+
+    confirmBtnText = '确认',
+    cancelBtnText = '取消',
+
+    onConfirm,
+    onCancel,
+    onClose,
+    maskOnClick,
+
+    children = (
+      <>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </>
+    ),
+
+    ...restProps
+  } = props;
+  console.log('=>(confirm-modal.tsx:232) height', height);
+
+  const [show, setShow] = useState(false);
+
+  const modalStyles = {
+    header: {},
+    body: {
+      overflow: 'hidden',
+    },
+    mask: {},
+    footer: {
+      marginTop: 0,
+    },
+    content: {},
+    ...props.style,
+  };
+
+  // Customize instance values exposed to parent components
+  useImperativeHandle(ref, () => ({
+    isOpen: show,
+    setIsOpen: setShow,
+    showModal: () => handleConfirmModalEventAspect('show'),
+    hideModal: () => handleConfirmModalEventAspect('hide'),
+  }));
+
+  const handleConfirmModalEventAspect = (type: string, kwargs: object = {}, ...args: any[]) => {
+    const handles: any = {
+      confirm: handleConfirmModalOnConfirm,
+      cancel: handleConfirmModalOnCancel,
+      close: handleConfirmModalOnClose,
+
+      show: handleConfirmModalOnShow,
+      hide: handleConfirmModalOnHide,
+
+      mask: handleConfirmModalMaskOnClick,
+    };
+    args = Object.keys(kwargs).length ? [kwargs, ...args] : args;
+    handles[type] && handles?.[type](...args);
+  };
+
+  const handleConfirmModalOnConfirm = () => {
+    typeof onConfirm === 'function' && onConfirm();
+  };
+
+  const handleConfirmModalOnCancel = () => {
+    closedAble && setShow(false);
+    typeof onCancel === 'function' && onCancel();
+  };
+
+  const handleConfirmModalOnClose = () => {
+    setShow(false);
+    typeof onClose === 'function' && onClose();
+  };
+
+  const handleConfirmModalMaskOnClick = () => {
+    typeof maskOnClick === 'function' && maskOnClick();
+  };
+
+  const handleConfirmModalOnShow = () => {
+    setShow(true);
+  };
+
+  const handleConfirmModalOnHide = () => {
+    setShow(false);
+  };
+
+  const child = message ? (
+    <MessageModal
+      message={message}
+      messageIconType={msgIconType}
+    />
+  ) : typeof children === 'function' ? (
+    children(props)
+  ) : (
+    children
+  );
+
+  const content = (
+    <>
+      <ModalLoading loading={loading} />
+      <ModalMask
+        isShow={Boolean(loading || disabled)}
+        onClick={() => handleConfirmModalEventAspect('mask')}
+      />
+      {child}
+    </>
+  );
+
+  const modalFooter = footer ? (
+    footer
+  ) : (
+    <ModalFooter
+      loading={loading}
+      confirmBtnText={confirmBtnText}
+      cancelBtnText={cancelBtnText}
+      onConfirm={() => handleConfirmModalEventAspect('confirm')}
+      onCancel={() => handleConfirmModalEventAspect('cancel')}
+    />
+  );
+
+  return (
+    <React.Fragment>
+      <Modal
+        className="confirm-modal"
+        title={title}
+        open={'open' in props ? open : show}
+        footer={modalFooter}
+        width={width}
+        style={{
+          top,
+          height,
+          ...restStyles,
+        }}
+        styles={modalStyles}
+        closeIcon={<CloseOutlined onClick={() => handleConfirmModalEventAspect('close')} />}
+        onCancel={() => handleConfirmModalEventAspect('cancel')}
+        {...restProps}
+      >
+        {scrollable ? (
+          <Scrollbars
+            style={{ height }}
+            autoHide
+          >
+            {content}
+          </Scrollbars>
+        ) : (
+          content
+        )}
+      </Modal>
+    </React.Fragment>
+  );
+};
+
+export default React.forwardRef(ConfirmModal);

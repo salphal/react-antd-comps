@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import DraggableList, { type DraggableListProps } from './draggable-list.tsx';
 import { type IDraggableItem } from '@lib/daraggable/draggable-list/draggable-item.tsx';
 import { mockDraggableListDataSource } from '@lib/daraggable/draggable-list/daggable-list.mock.tsx';
-import classNames from 'classnames';
 
 export const DraggableListStory = React.forwardRef<any, DraggableListProps>(
   ({ dataSource = [], setDataSource = [], ...rest }, ref) => {
     const [data, setData] = useState<Array<IDraggableItem>>([...mockDraggableListDataSource]);
     const props: DraggableListProps = { dataSource: data, setDataSource: setData, ...rest };
     return (
-      <div className={classNames(['p-3'])}>
+      <div className="story-wrap">
         <DraggableList
           ref={ref}
           {...props}
