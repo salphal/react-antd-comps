@@ -2,37 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .story-wrap {
-    padding: 12px;
-    min-height: 500px;
-    overflow: hidden;
+  padding: 12px;
+  min-height: 500px;
+  overflow: hidden;
 }
 
 .h-100 {
-    min-height: 100px;
+  min-height: 100px;
 }
 
 .h-200 {
-    min-height: 200px;
+  min-height: 200px;
 }
 
 .h-300 {
-    min-height: 300px;
+  min-height: 300px;
 }
 
 .h-400 {
-    min-height: 400px;
+  min-height: 400px;
 }
 
 .h-500 {
-    min-height: 500px;
+  min-height: 500px;
 }
 
 .h-600 {
-    min-height: 600px;
+  min-height: 600px;
 }
 
 .h-700 {
-    min-height: 700px;
+  min-height: 700px;
 }
