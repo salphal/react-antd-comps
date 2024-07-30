@@ -26,9 +26,7 @@ export const DefaultConfirmModal: Story = {
     ...defaultProps,
     style: {
       width: 1000,
-      body: {
-        height: 300,
-      },
+      body: {},
     },
     scrollAble: true,
   },

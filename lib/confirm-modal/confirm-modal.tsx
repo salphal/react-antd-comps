@@ -369,7 +369,7 @@ const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps>
       >
         {scrollAble ? (
           <Scrollbars
-            style={{ height: bodyHeight() }}
+            style={{ height: bodyHeight(), minHeight: 300 }}
             autoHide
           >
             {content}
