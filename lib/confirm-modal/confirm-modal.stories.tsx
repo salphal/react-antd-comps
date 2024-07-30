@@ -24,11 +24,36 @@ const defaultProps: ConfirmModalProps = {};
 export const DefaultConfirmModal: Story = {
   args: {
     ...defaultProps,
+    style: {
+      width: 1000,
+      body: {
+        height: 300,
+      },
+    },
+    scrollAble: true,
   },
 };
 
-export const AnotherConfirmModal: Story = {
+export const InfoMessageConfirmModal: Story = {
   args: {
     ...defaultProps,
+    message: 'Info Message Confirm Modal',
+    msgIconType: 'info',
+  },
+};
+
+export const SuccessMessageConfirmModal: Story = {
+  args: {
+    ...defaultProps,
+    message: 'Success Message Confirm Modal',
+    msgIconType: 'success',
+  },
+};
+
+export const DangerMessageConfirmModal: Story = {
+  args: {
+    ...defaultProps,
+    message: 'Danger Message Confirm Modal',
+    msgIconType: 'danger',
   },
 };

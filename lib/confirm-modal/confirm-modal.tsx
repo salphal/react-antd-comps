@@ -3,6 +3,7 @@ import React, {
   type ReactNode,
   type Ref,
   useImperativeHandle,
+  useRef,
   useState,
 } from 'react';
 import { CheckCircleFilled, CloseOutlined, InfoCircleFilled } from '@ant-design/icons';
@@ -63,24 +64,26 @@ const ModalMask = (props: any) => {
 };
 
 interface MessageModalProps {
+  title?: ReactNode;
   message?: string;
-  messageIconType?: MsgIconTypes;
+  msgIconType?: MsgIconTypes;
 }
 
 /**
  * 消息弹窗
  */
 const MessageModal = (props: MessageModalProps) => {
-  const { message, messageIconType } = props;
+  const { title, message, msgIconType, ...restProps } = props;
   let icon: any = null;
-  if (typeof messageIconType === 'string' && Object.keys(modalIconList).includes(messageIconType)) {
-    icon = modalIconList[messageIconType];
+
+  if (typeof msgIconType === 'string' && Object.keys(modalIconList).includes(msgIconType)) {
+    icon = modalIconList[msgIconType];
   }
   return (
     <div
       style={{
-        padding: '30px 0 60px 0',
-        textAlign: 'center',
+        padding: '24px 18px 32px',
+        textAlign: 'left',
         fontSize: '18px',
       }}
     >
@@ -138,10 +141,14 @@ export interface ModalStyle {
 }
 
 export interface ConfirmModalProps {
-  /** 弹窗标题 */
-  title?: ReactNode;
   /** 是否在加载状态 */
   open?: boolean;
+
+  /** 弹窗标题 */
+  title?: ReactNode;
+  /** 自定义底部控制按钮 */
+  footer?: ReactNode | null;
+
   /** 是否在加载状态 */
   loading?: boolean;
   /** 是否禁用状态 */
@@ -150,10 +157,7 @@ export interface ConfirmModalProps {
   /** 是否自动关闭 */
   closedAble?: boolean;
   /** 内容区域是否根据 style.body.height 高度滚动 */
-  scrollable?: boolean;
-
-  /** 自定义底部控制按钮 */
-  footer?: ReactNode | null;
+  scrollAble?: boolean;
 
   /** 弹窗消息内容 */
   message?: string;
@@ -182,10 +186,10 @@ export interface ConfirmModalProps {
 }
 
 interface ConfirmModalRef {
-  isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
-  showModal: () => void;
-  hideModal: () => void;
+  isOpen?: boolean;
+  setIsOpen?: (value: boolean) => void;
+  showModal?: () => void;
+  hideModal?: () => void;
 }
 
 const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps> = (
@@ -193,24 +197,26 @@ const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps>
   ref: Ref<ConfirmModalRef | HTMLDivElement>,
 ) => {
   const {
-    title = '标题',
     open,
+
+    title = '标题',
+    footer,
 
     loading = false,
     disabled = false,
 
-    footer,
-
     closedAble = true,
-    scrollable = true,
+    scrollAble = true,
 
     message = '',
     msgIconType,
 
-    style: { top = '20%', width = 500, height = 'auto', ...restStyles } = {
+    style: { top = '20%', width = 400, body: { height = 'auto' }, ...restStyles } = {
       top: '20%',
-      width: 500,
-      height: 'auto',
+      width: 400,
+      body: {
+        height: 'auto',
+      },
     },
 
     confirmBtnText = '确认',
@@ -231,19 +237,16 @@ const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps>
 
     ...restProps
   } = props;
-  console.log('=>(confirm-modal.tsx:232) height', height);
 
   const [show, setShow] = useState(false);
 
   const modalStyles = {
     header: {},
     body: {
-      overflow: 'hidden',
+      height: 'auto',
     },
     mask: {},
-    footer: {
-      marginTop: 0,
-    },
+    footer: {},
     content: {},
     ...props.style,
   };
@@ -299,8 +302,9 @@ const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps>
 
   const child = message ? (
     <MessageModal
+      title={title}
       message={message}
-      messageIconType={msgIconType}
+      msgIconType={msgIconType}
     />
   ) : typeof children === 'function' ? (
     children(props)
@@ -349,7 +353,7 @@ const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps>
         onCancel={() => handleConfirmModalEventAspect('cancel')}
         {...restProps}
       >
-        {scrollable ? (
+        {scrollAble ? (
           <Scrollbars
             style={{ height }}
             autoHide

@@ -10,27 +10,47 @@ export const ConfirmModalStory = React.forwardRef<any, ConfirmModalProps>(
       open = undefined,
       disabled = false,
       closedAble = true,
-      scrollable = true,
+      scrollAble = false,
       confirmBtnText = '确认',
       cancelBtnText = '取消',
       footer = null,
       style = {
-        height: 300,
-        body: {},
+        top: '20%',
+        width: 400,
+        header: {},
+        body: {
+          height: 'auto',
+        },
+        mask: {},
+        footer: {},
+        content: {},
       },
+      message,
+      msgIconType,
       ...rest
     },
     ref,
   ) => {
-    const props = { title, loading, disabled, closedAble, scrollable, footer, style, ...rest };
+    const confirmModalProps = {
+      title,
+      loading,
+      disabled,
+      closedAble,
+      scrollAble,
+      footer,
+      style,
+      message,
+      msgIconType,
+      ...rest,
+    };
 
-    const modalRef = useRef<any>(null);
+    const confirmModalRef = useRef<any>(null);
 
     return (
       <div className="story-wrap h-100">
         <ConfirmModal
-          ref={modalRef}
-          {...props}
+          ref={confirmModalRef}
+          {...confirmModalProps}
         >
           <div>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias autem debitis deserunt
@@ -83,7 +103,7 @@ export const ConfirmModalStory = React.forwardRef<any, ConfirmModalProps>(
             vero? Ex iure labore molestiae obcaecati sed.
           </div>
         </ConfirmModal>
-        <Button onClick={() => modalRef.current.showModal()}>show modal</Button>
+        <Button onClick={() => confirmModalRef.current.showModal()}>show confirm modal</Button>
       </div>
     );
   },
