@@ -27,7 +27,7 @@ export const baseTableColumns = [
 
 export const baseTableDataSource = Mock.mock(() => {
   return Mock.mock({
-    'dataSource|5-10': [
+    'dataSource|20': [
       {
         [`key|+1`]: 0,
         id: '@guid()',

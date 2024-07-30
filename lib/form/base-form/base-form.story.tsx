@@ -4,10 +4,12 @@ import BaseForm, { type BaseFormProps } from './base-form.tsx';
 export const BaseFormStory = React.forwardRef<any, BaseFormProps>(({ ...rest }, ref) => {
   const props = { ...rest };
   return (
-    <BaseForm
-      ref={ref}
-      {...props}
-    />
+    <div className="story-wrap h-500">
+      <BaseForm
+        ref={ref}
+        {...props}
+      />
+    </div>
   );
 });
 

@@ -91,6 +91,8 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
       <Table
         rowKey={(record: any) => record.id || record.key}
         rowSelection={selectable ? tableRowSelection : false}
+        columns={columns}
+        dataSource={dataSource}
         pagination={false}
         scroll={{
           y: tableContentHeight(),

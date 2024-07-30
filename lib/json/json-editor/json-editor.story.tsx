@@ -31,10 +31,12 @@ export const JsonEditorStory = React.forwardRef<any, JsonEditorProps>(
       ...rest,
     };
     return (
-      <JsonEditor
-        ref={ref}
-        {...props}
-      />
+      <div className="story-wrap h-500">
+        <JsonEditor
+          ref={ref}
+          {...props}
+        />
+      </div>
     );
   },
 );

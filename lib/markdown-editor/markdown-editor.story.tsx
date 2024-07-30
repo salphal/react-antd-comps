@@ -5,7 +5,7 @@ export const MarkdownEditorStory = React.forwardRef<any, MarkdownEditorProps>(
   ({ ...rest }, ref) => {
     const props = { ...rest };
     return (
-      <div className="story-wrap">
+      <div className="story-wrap h-500">
         <MarkdownEditor
           ref={ref}
           {...props}

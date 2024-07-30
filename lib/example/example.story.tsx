@@ -45,10 +45,12 @@ export const ExampleStory = React.forwardRef<any, ExampleProps>(
       ...rest,
     };
     return (
-      <Example
-        ref={ref}
-        {...props}
-      />
+      <div className={'story-wrap h-100'}>
+        <Example
+          ref={ref}
+          {...props}
+        />
+      </div>
     );
   },
 );

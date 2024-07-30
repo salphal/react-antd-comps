@@ -1,50 +1,110 @@
 import React, {
   type ForwardRefRenderFunction,
+  type ReactNode,
   type Ref,
   useImperativeHandle,
   useMemo,
   useRef,
   useState,
 } from 'react';
-import { EditableProTable } from '@ant-design/pro-components';
+import {
+  EditableProTable,
+  type EditableProTableProps,
+  type FormInstance,
+  type UseEditableUtilType,
+} from '@ant-design/pro-components';
 import { v4 as uuidv4 } from 'uuid';
+import { useForm } from 'antd/es/form/Form';
 
-export interface IColumnItem {
-  title: string;
+export interface Schema {
   dataIndex: string;
-  width: string | number;
-  valueType?: 'text' | 'input' | 'select' | 'option';
-  formItemProps: {
-    [key: string]: any;
+  entity: any;
+  index: number;
+  isEditable: boolean;
+  key: string;
+  title: string;
+  type: string;
+  renderFormItem: () => any;
+}
+
+export interface Config {
+  defaultRender: () => any;
+  isEditable: boolean;
+  record: any;
+  recordKey: string;
+  type: string;
+}
+
+export interface ITableCell {
+  [key: string]: any;
+
+  /** 列标题 */
+  title: string;
+  /** 列宽度 */
+  width?: string | number;
+
+  /** */
+  key: string;
+  /** */
+  dataIndex: string;
+
+  /** 是否可编辑 */
+  editable?: boolean;
+  /**  */
+  valueType?: 'text' | 'input' | 'select' | 'option' | string;
+
+  formItemProps?: {
     rules: Array<any>;
   };
-  valueEnum: {
+
+  valueEnum?: {
     [key: string]: {
       text: string;
       status: any;
     };
   };
+
+  /** 自定义渲染 formItem  */
+  renderFormItem?: (
+    schema: Schema,
+    config: Config,
+    form: FormInstance,
+    action?: Omit<
+      UseEditableUtilType,
+      'newLineRecord' | 'editableKeys' | 'actionRender' | 'setEditableRowKeys'
+    >,
+  ) => ReactNode;
 }
 
-export interface EditAbleCellTableProps {
+export interface TableDefaultDoms {
+  save: React.ReactNode;
+  delete: React.ReactNode;
+  cancel: React.ReactNode;
+}
+
+export interface EditAbleCellTableProps extends EditableProTableProps<any, any> {
   /** 列表配置 */
   columns: Array<any>;
   /** 列表数据 */
   dataSource: Array<any>;
   /** 设置列表数据的方法 */
-  setDataSource: (value: any) => void;
+  setDataSource: (data: any[]) => void;
+
   /** 行数据唯一标识 */
   rowKey?: string;
   /** 列表标题 */
-  headerTitle?: string;
+  headerTitle?: ReactNode;
+
   /** 顶部工具行渲染函数 */
   toolBarRender?: () => Array<any>;
   /** 操作列渲染函数 */
-  optionColumnRender?: (row: any, config: any, defaultDoms: any) => Array<any>;
-  /** 是否显示添加 */
+  optionColumnRender?: (row: any, config: any, defaultDoms: TableDefaultDoms) => Array<any>;
+
+  /** 是否显示新增 */
   addable?: boolean;
-  /** 单行默认数据 */
+  /** 单行默认数据( 用于默认新增 ) */
   defaultRowData?: any;
+
   /** 列表滚动设置 */
   scroll?: { x?: number; y?: number };
   /** 列表高度 */
@@ -68,6 +128,7 @@ const EditableCellTable: ForwardRefRenderFunction<EditableCellTableRef, EditAble
   props: EditAbleCellTableProps,
   ref: Ref<EditableCellTableRef | HTMLDivElement>,
 ) => {
+  const [form] = useForm();
   const {
     rowKey = 'id',
 
@@ -132,15 +193,16 @@ const EditableCellTable: ForwardRefRenderFunction<EditableCellTableRef, EditAble
 
   const editableColumns = useMemo(
     () => () => {
-      if (
-        !Array.isArray(columns) ||
-        !columns.length ||
-        !Array.isArray(dataSource) ||
-        !dataSource.length
-      )
-        return [];
-      const originalValueDataIndex = getOriginalValueDataIndex(columns, dataSource);
-      return columns.filter((v) => [...originalValueDataIndex, 'option'].includes(v.dataIndex));
+      return columns;
+      // if (
+      //   !Array.isArray(columns) ||
+      //   !columns.length ||
+      //   !Array.isArray(dataSource) ||
+      //   !dataSource.length
+      // )
+      //   return [];
+      // const originalValueDataIndex = getOriginalValueDataIndex(columns, dataSource);
+      // return columns.filter((v) => [...originalValueDataIndex, 'option'].includes(v.dataIndex));
     },
     [columns, dataSource],
   );
@@ -148,6 +210,7 @@ const EditableCellTable: ForwardRefRenderFunction<EditableCellTableRef, EditAble
   // Customize instance values exposed to parent components
   useImperativeHandle(ref, () => ({}));
 
+  // @ts-ignore
   return (
     <React.Fragment>
       <div

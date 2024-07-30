@@ -5,8 +5,8 @@ import { editAbleTableDataSource } from '@lib/table/editable-cell-table/editable
 export const EditAbleTableStory = React.forwardRef<any, EditAbleCellTableProps>(
   (
     {
-      columns = [],
-      dataSource = [],
+      columns,
+      dataSource,
       setDataSource,
       addable = false,
       rowKey = 'id',
@@ -18,7 +18,8 @@ export const EditAbleTableStory = React.forwardRef<any, EditAbleCellTableProps>(
     },
     ref,
   ) => {
-    const [data, setData] = useState([...editAbleTableDataSource]);
+    const [data, setData] = useState<any[]>([...editAbleTableDataSource]);
+    console.log('=>(editable-cell-table.story.tsx:22) data', data);
     const optionsColumn = {
       title: '操作',
       dataIndex: 'option',
@@ -39,10 +40,12 @@ export const EditAbleTableStory = React.forwardRef<any, EditAbleCellTableProps>(
     };
 
     return (
-      <EditAbleTable
-        ref={ref}
-        {...props}
-      />
+      <div className="story-wrap h-500">
+        <EditAbleTable
+          ref={ref}
+          {...props}
+        />
+      </div>
     );
   },
 );

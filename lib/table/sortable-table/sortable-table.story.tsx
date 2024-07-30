@@ -7,10 +7,12 @@ export const SortAbleTableStory = React.forwardRef<any, SortAbleTableProps>(
     const [data, setData] = useState([...sortAbleTableDataSource]);
     const props = { dataSource: data, setDataSource: setData, columns, ...rest };
     return (
-      <SortAbleTable
-        ref={ref}
-        {...props}
-      />
+      <div className="story-wrap h-500">
+        <SortAbleTable
+          ref={ref}
+          {...props}
+        />
+      </div>
     );
   },
 );
