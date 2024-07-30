@@ -3,7 +3,7 @@ import React, {
   type ReactNode,
   type Ref,
   useImperativeHandle,
-  useRef,
+  useMemo,
   useState,
 } from 'react';
 import { CheckCircleFilled, CloseOutlined, InfoCircleFilled } from '@ant-design/icons';
@@ -82,7 +82,7 @@ const MessageModal = (props: MessageModalProps) => {
   return (
     <div
       style={{
-        padding: '24px 18px 32px',
+        padding: '12px 0 6px',
         textAlign: 'left',
         fontSize: '18px',
       }}
@@ -206,12 +206,12 @@ const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps>
     disabled = false,
 
     closedAble = true,
-    scrollAble = true,
+    scrollAble = false,
 
     message = '',
     msgIconType,
 
-    style: { top = '20%', width = 400, body: { height = 'auto' }, ...restStyles } = {
+    style: { top = '20%', width = 400, ...restStyles } = {
       top: '20%',
       width: 400,
       body: {
@@ -244,12 +244,27 @@ const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps>
     header: {},
     body: {
       height: 'auto',
+      padding: '12px 24px',
     },
     mask: {},
     footer: {},
     content: {},
     ...props.style,
   };
+
+  const bodyHeight = useMemo(
+    () => () => {
+      if (
+        'body' in modalStyles &&
+        typeof modalStyles.body === 'object' &&
+        'height' in modalStyles.body &&
+        modalStyles.body.height
+      )
+        return modalStyles.body.height;
+      return 'auto';
+    },
+    [props.style],
+  );
 
   // Customize instance values exposed to parent components
   useImperativeHandle(ref, () => ({
@@ -345,7 +360,6 @@ const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps>
         width={width}
         style={{
           top,
-          height,
           ...restStyles,
         }}
         styles={modalStyles}
@@ -355,7 +369,7 @@ const ConfirmModal: ForwardRefRenderFunction<ConfirmModalRef, ConfirmModalProps>
       >
         {scrollAble ? (
           <Scrollbars
-            style={{ height }}
+            style={{ height: bodyHeight() }}
             autoHide
           >
             {content}

@@ -1,13 +1,15 @@
 .confirm-modal {
   .ant-modal-content {
     padding: 0 !important;
+    border-radius: 2px !important;
 
     .ant-modal-close {
-      top: 9px;
+      top: 14px;
     }
 
     .ant-modal-header {
       margin-bottom: 0 !important;
+      background-color: #f6f7fb;
 
       .ant-modal-title {
         padding-left: 18px;
@@ -24,7 +26,7 @@
       margin-top: 0 !important;
 
       .confirm-modal-footer {
-        padding: 10px 16px 10px 12px;
+        padding: 12px 24px 18px 24px;
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
