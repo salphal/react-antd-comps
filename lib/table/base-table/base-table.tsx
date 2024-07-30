@@ -46,13 +46,6 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
   }));
 
   useEffect(() => {
-    const baseTableDom = document.querySelector('.antd-base-table');
-    if (baseTableDom && baseTableDom instanceof Element) {
-      tableWrapDomRef.current = baseTableDom.parentNode;
-    }
-  }, []);
-
-  useEffect(() => {
     selectedRowKeysRef.current = selectedRowKeys;
   }, [selectedRowKeys]);
 
@@ -91,18 +84,21 @@ const BaseTable: React.ForwardRefRenderFunction<BaseTableRef, BaseTableProps> = 
   };
 
   return (
-    <Table
-      rowKey={(record: any) => record.id || record.key}
-      dataSource={dataSource}
-      columns={columns}
-      rowSelection={selectable ? tableRowSelection : false}
-      pagination={false}
-      scroll={{
-        y: tableContentHeight(),
-        x: 'max-content',
-      }}
-      {...resetProps}
-    />
+    <div
+      ref={tableWrapDomRef}
+      style={{ width: '100%', height: '100%' }}
+    >
+      <Table
+        rowKey={(record: any) => record.id || record.key}
+        rowSelection={selectable ? tableRowSelection : false}
+        pagination={false}
+        scroll={{
+          y: tableContentHeight(),
+          x: 'max-content',
+        }}
+        {...resetProps}
+      />
+    </div>
   );
 };
 

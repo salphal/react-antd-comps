@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import EditAbleTable, { type EditAbleTableProps } from './editable-table.tsx';
-import { editAbleTableDataSource } from '@lib/table/editable-table/editable-table.mock.tsx';
+import EditAbleTable, { type EditAbleCellTableProps } from './editable-cell-table.tsx';
+import { editAbleTableDataSource } from '@lib/table/editable-cell-table/editable-cell-table.mock.tsx';
 
-export const EditAbleTableStory = React.forwardRef<any, EditAbleTableProps>(
+export const EditAbleTableStory = React.forwardRef<any, EditAbleCellTableProps>(
   (
     {
       columns = [],

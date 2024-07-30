@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import EditAbleTable, { type EditAbleTableProps } from './editable-table';
-import { EditAbleTableStory } from './editable-table.story';
-import { editAbleTableColumns, editAbleTableDataSource } from './editable-table.mock';
+import EditAbleTable, { type EditAbleCellTableProps } from './editable-cell-table';
+import { EditAbleTableStory } from './editable-cell-table.story';
+import { editAbleTableColumns, editAbleTableDataSource } from './editable-cell-table.mock';
 
 const meta = {
   title: 'Components/Table/EditAbleTable',
@@ -23,7 +23,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const defaultProps: EditAbleTableProps = {
+const defaultProps: EditAbleCellTableProps = {
   columns: editAbleTableColumns,
   dataSource: editAbleTableDataSource,
   setDataSource: () => {},
