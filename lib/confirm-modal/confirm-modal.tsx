@@ -11,7 +11,7 @@ import { Button, Modal, Spin } from 'antd';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import './index.scss';
 
-type MsgIconTypes = 'info' | 'success' | 'danger';
+export type MsgIconTypes = 'info' | 'success' | 'danger';
 
 const modalIconList: any = {
   info: <InfoCircleFilled style={{ color: '#0166FF' }} />,
@@ -82,7 +82,7 @@ const MessageModal = (props: MessageModalProps) => {
   return (
     <div
       style={{
-        padding: '12px 0 6px',
+        padding: '24px 18px',
         textAlign: 'left',
         fontSize: '18px',
       }}

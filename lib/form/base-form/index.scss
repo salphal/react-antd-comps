@@ -1,0 +1,50 @@
+.ant-base-form.ant-form {
+
+  &.form-item-no-margin .ant-form-item {
+    margin: 0;
+  }
+
+  &.flex-row {
+    .ant-form-layout {
+      flex-direction: row;
+    }
+  }
+
+  &.flex-col {
+    .ant-form-layout {
+      flex-direction: column;
+      .ant-form-item {
+        margin-bottom: 24px;
+      }
+    }
+  }
+
+  .ant-form-layout {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .ant-form-item {
+      width: 100%;
+
+      .ant-row.ant-form-item-row {
+
+        .ant-form-item-label {
+
+          label {
+
+          }
+
+        }
+
+        .ant-form-item-control {
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

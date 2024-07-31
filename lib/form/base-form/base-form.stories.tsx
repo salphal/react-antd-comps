@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import BaseForm, { type BaseFormProps } from './base-form';
 import { BaseFormStory } from './base-form.story';
 
@@ -13,16 +12,21 @@ const meta = {
       toc: true,
     },
   },
-  args: {
-    onClick: fn(),
-  },
+  args: {},
   argTypes: {},
 } satisfies Meta<typeof BaseForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const defaultProps: BaseFormProps = {};
+const defaultProps: BaseFormProps = {
+  form: null,
+  labelSpan: 2,
+  itemSpan: 22,
+  horizontal: false,
+  vertical: true,
+  labelAlign: 'left',
+};
 
 export const DefaultBaseForm: Story = {
   args: {
