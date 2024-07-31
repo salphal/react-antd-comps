@@ -82,7 +82,7 @@ export interface TableDefaultDoms {
   cancel: React.ReactNode;
 }
 
-export interface EditAbleCellTableProps extends EditableProTableProps<any, any> {
+export interface EditAbleCellProTableProps extends EditableProTableProps<any, any> {
   /** 列表配置 */
   columns: Array<any>;
   /** 列表数据 */
@@ -111,7 +111,7 @@ export interface EditAbleCellTableProps extends EditableProTableProps<any, any> 
   height?: number;
 }
 
-interface EditableCellTableRef {
+interface EditableCellProTableRef {
   [key: string]: any;
 }
 
@@ -124,10 +124,10 @@ interface EditableCellTableRef {
  * 必须保证数据有唯一 id
  * 必须保证数据有唯一 id
  */
-const EditableCellTable: ForwardRefRenderFunction<EditableCellTableRef, EditAbleCellTableProps> = (
-  props: EditAbleCellTableProps,
-  ref: Ref<EditableCellTableRef | HTMLDivElement>,
-) => {
+const EditableCellProTable: ForwardRefRenderFunction<
+  EditableCellProTableRef,
+  EditAbleCellProTableProps
+> = (props: EditAbleCellProTableProps, ref: Ref<EditableCellProTableRef | HTMLDivElement>) => {
   const [form] = useForm();
   const {
     rowKey = 'id',
@@ -270,4 +270,4 @@ const EditableCellTable: ForwardRefRenderFunction<EditableCellTableRef, EditAble
   );
 };
 
-export default React.forwardRef(EditableCellTable);
+export default React.forwardRef(EditableCellProTable);

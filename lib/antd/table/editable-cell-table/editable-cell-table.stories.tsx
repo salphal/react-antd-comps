@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
-import EditAbleTable, { type EditAbleCellTableProps } from './editable-cell-table';
+import EditableCellProTable, { type EditAbleCellProTableProps } from './editable-cell-table';
 import { EditAbleTableStory } from './editable-cell-table.story';
 import {
-  editAbleTableColumns,
-  editAbleTableDataSource,
-  editAbleTableFormData,
+  editAbleProTableColumns,
+  editAbleProTableDataSource,
+  editAbleProTableFormData,
 } from './editable-cell-table.mock';
 
 /**
@@ -13,7 +12,7 @@ import {
  */
 
 const meta = {
-  title: 'Antd/Table/EditableCellTable',
+  title: 'Antd/Table/EditableCellProTable',
   component: EditAbleTableStory,
   tags: ['autodocs'],
   parameters: {
@@ -22,26 +21,24 @@ const meta = {
       toc: true,
     },
   },
-  args: {
-    onClick: fn(),
-  },
+  args: {},
   argTypes: {},
-} satisfies Meta<typeof EditAbleTable>;
+} satisfies Meta<typeof EditableCellProTable>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const defaultProps: EditAbleCellTableProps = {
-  columns: editAbleTableColumns,
-  dataSource: editAbleTableDataSource,
+const defaultProps: EditAbleCellProTableProps = {
+  columns: editAbleProTableColumns,
+  dataSource: editAbleProTableDataSource,
   setDataSource: () => {},
   addable: true,
   defaultRowData: {
-    ...editAbleTableFormData,
+    ...editAbleProTableFormData,
   },
 };
 
-export const DefaultEditAbleTable: Story = {
+export const DefaultEditAbleProTable: Story = {
   args: {
     ...defaultProps,
   },

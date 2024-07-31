@@ -2,7 +2,7 @@ import Mock from 'mockjs';
 import { Form, Input, Radio, Checkbox, Select, Switch } from 'antd';
 import type { ITableCell } from '@lib/antd/table/editable-cell-table/editable-cell-table.tsx';
 
-export const editAbleTableFormData = Mock.mock({
+export const editAbleProTableFormData = Mock.mock({
   text: '@name()',
   input: '@name()',
   select: '@pick(["option1","option2","option3"])',
@@ -11,7 +11,7 @@ export const editAbleTableFormData = Mock.mock({
   switch: '@pick([true,false])',
 });
 
-export const editAbleTableColumns: Array<ITableCell> = [
+export const editAbleProTableColumns: Array<ITableCell> = [
   {
     key: 'text',
     dataIndex: 'text',
@@ -94,7 +94,7 @@ export const editAbleTableColumns: Array<ITableCell> = [
   },
 ];
 
-export const editAbleTableDataSource = Mock.mock(() => {
+export const editAbleProTableDataSource = Mock.mock(() => {
   return Mock.mock({
     'dataSource|5-10': [
       {

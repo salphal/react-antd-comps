@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import EditAbleTable, { type EditAbleCellTableProps } from './editable-cell-table.tsx';
-import { editAbleTableDataSource } from '@lib/antd/table/editable-cell-table/editable-cell-table.mock.tsx';
+import EditAbleTable, { type EditAbleCellProTableProps } from './editable-cell-table.tsx';
+import { editAbleProTableDataSource } from '@lib/antd/table/editable-cell-table/editable-cell-table.mock.tsx';
 
-export const EditAbleTableStory = React.forwardRef<any, EditAbleCellTableProps>(
+export const EditAbleTableStory = React.forwardRef<any, EditAbleCellProTableProps>(
   (
     {
       columns,
@@ -18,7 +18,7 @@ export const EditAbleTableStory = React.forwardRef<any, EditAbleCellTableProps>(
     },
     ref,
   ) => {
-    const [data, setData] = useState<any[]>([...editAbleTableDataSource]);
+    const [data, setData] = useState<any[]>([...editAbleProTableDataSource]);
     console.log('=>(editable-cell-table.story.tsx:22) data', data);
     const optionsColumn = {
       title: '操作',
