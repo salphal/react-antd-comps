@@ -1,3 +1,3 @@
-import EditableCellTable from './editable-cell-table.tsx';
+import EditableCellProTable from './editable-cell-pro-table.tsx';
 
-export default EditableCellTable;
+export default EditableCellProTable;

@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import EditableCellProTable, { type EditAbleCellProTableProps } from './editable-cell-table';
-import { EditAbleTableStory } from './editable-cell-table.story';
+import EditableCellProTable, { type EditAbleCellProTableProps } from './editable-cell-pro-table';
+import { EditAbleTableStory } from './editable-cell-pro-table.story';
 import {
   editAbleProTableColumns,
   editAbleProTableDataSource,
   editAbleProTableFormData,
-} from './editable-cell-table.mock';
+} from './editable-cell-pro-table.mock';
 
 /**
  * Antd/ProTable 可自定义 tableCell 为 formItem

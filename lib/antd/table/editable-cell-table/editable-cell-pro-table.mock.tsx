@@ -1,6 +1,6 @@
 import Mock from 'mockjs';
 import { Form, Input, Radio, Checkbox, Select, Switch } from 'antd';
-import type { ITableCell } from '@lib/antd/table/editable-cell-table/editable-cell-table.tsx';
+import type { ITableCell } from '@lib/antd/table/editable-cell-table/editable-cell-pro-table.tsx';
 
 export const editAbleProTableFormData = Mock.mock({
   text: '@name()',
