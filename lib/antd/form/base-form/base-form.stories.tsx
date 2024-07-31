@@ -2,6 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import BaseForm, { type BaseFormProps } from './base-form';
 import { BaseFormStory } from './base-form.story';
 
+/**
+ * 主要用于控制表单的布局
+ */
+
 const meta = {
   title: 'Antd/Form/BaseForm',
   component: BaseFormStory,

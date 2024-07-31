@@ -1,9 +1,7 @@
 import React, {
   type ForwardRefRenderFunction,
   type Ref,
-  useState,
   useEffect,
-  useRef,
   useImperativeHandle,
   type ReactNode,
   type CSSProperties,
@@ -13,7 +11,6 @@ import type { FormInstance } from '@ant-design/pro-components';
 import classNames from 'classnames';
 import './index.scss';
 import './reset.scss';
-import type { FormLabelAlign } from 'antd/lib/form/interface';
 
 export type ColSpanType = number | string;
 
