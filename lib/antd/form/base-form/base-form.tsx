@@ -37,7 +37,7 @@ export interface BaseFormProps extends FormProps {
   /** 是否使用 flex-col 布局 */
   vertical?: boolean;
 
-  /** 自定义类名集合 */
+  /** 自定义类名 */
   clazzName?: string;
   /** 子元素 */
   children?: ReactNode;
