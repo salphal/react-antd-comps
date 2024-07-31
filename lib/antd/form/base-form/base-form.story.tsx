@@ -5,41 +5,41 @@ import FormItem from 'antd/es/form/FormItem';
 import { Input, InputNumber, Select } from 'antd';
 
 export const BaseFormStory = React.forwardRef<any, BaseFormProps>(
-  ({ form, vertical = false, ...rest }, ref) => {
+  ({ form, horizontal, singleLine, vertical = false, ...rest }, ref) => {
     const [formInstance] = useForm();
-    const props = { form: formInstance, vertical, ...rest };
+    const props = { form: formInstance, vertical, horizontal, singleLine, ...rest };
 
-    const formItemStyles = {
-      // width: '33%',
-    };
+    let mockDataLength = 5;
+
+    if (vertical) {
+      mockDataLength = 5;
+    } else if (horizontal && !singleLine) {
+      mockDataLength = 9;
+    } else if (horizontal && singleLine) {
+      mockDataLength = 3;
+    }
+
     return (
       <div className="story-wrap h-500">
         <BaseForm
+          clazzName={'base-form-story'}
           ref={ref}
           {...props}
         >
-          <FormItem
-            label={'姓名'}
-            style={formItemStyles}
-          >
-            <Input />
-          </FormItem>
-          <FormItem
-            label={'年龄'}
-            style={formItemStyles}
-          >
-            <InputNumber />
-          </FormItem>
-          <FormItem
-            label={'职业'}
-            style={formItemStyles}
-          >
-            <Select
-              options={Array(3)
-                .fill(null)
-                .map((v: any, i: number) => ({ label: `Option${i}`, value: `option${i}` }))}
-            />
-          </FormItem>
+          {Array(mockDataLength)
+            .fill(null)
+            .map((v: any, i: number) => (
+              <FormItem
+                key={Date.now() + i}
+                name={`Label_${i}`}
+                label={`Label_${i}`}
+                style={{
+                  width: '33.33%',
+                }}
+              >
+                <Input />
+              </FormItem>
+            ))}
         </BaseForm>
       </div>
     );

@@ -23,18 +23,35 @@ const defaultProps: BaseFormProps = {
   form: null,
   labelSpan: 6,
   itemSpan: 18,
-  vertical: true,
   labelAlign: 'left',
 };
 
 export const DefaultBaseForm: Story = {
   args: {
+    vertical: true,
+    horizontal: false,
+    singleLine: false,
+    mockDataLength: 10,
     ...defaultProps,
   },
 };
 
-export const AnotherBaseForm: Story = {
+export const HorizontalBaseForm: Story = {
   args: {
+    vertical: false,
+    horizontal: true,
+    singleLine: false,
+    mockDataLength: 9,
+    ...defaultProps,
+  },
+};
+
+export const HorizontalSingleLineBaseForm: Story = {
+  args: {
+    vertical: false,
+    horizontal: true,
+    singleLine: true,
+    mockDataLength: 3,
     ...defaultProps,
   },
 };
