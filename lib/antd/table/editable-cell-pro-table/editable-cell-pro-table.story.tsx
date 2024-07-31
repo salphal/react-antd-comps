@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import EditAbleTable, { type EditAbleCellProTableProps } from './editable-cell-pro-table.tsx';
-import { editAbleProTableDataSource } from '@lib/antd/table/editable-cell-table/editable-cell-pro-table.mock.tsx';
+import { editAbleProTableDataSource } from '@lib/antd/table/editable-cell-pro-table/editable-cell-pro-table.mock.tsx';
 
 export const EditAbleTableStory = React.forwardRef<any, EditAbleCellProTableProps>(
   (
