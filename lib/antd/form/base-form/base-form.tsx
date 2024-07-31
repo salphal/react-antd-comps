@@ -27,9 +27,9 @@ export interface BaseFormProps extends FormProps {
 
   /** 基于 flex 设置 FormItem 的布局的样式 */
   layoutStyles?: CSSProperties;
-  /** */
-  horizontal?: boolean;
-  /** */
+  // /** */
+  // horizontal?: boolean;
+  /** 是否使用 flex-col 布局 */
   vertical?: boolean;
 
   /** 自定义类名集合 */
@@ -51,7 +51,7 @@ const BaseForm: ForwardRefRenderFunction<BaseFormRef, BaseFormProps> = (
     itemSpan = 20,
     layoutStyles = {},
     vertical = false,
-    horizontal = false,
+    // horizontal = false,
     ...restProps
   } = props;
 
@@ -66,7 +66,7 @@ const BaseForm: ForwardRefRenderFunction<BaseFormRef, BaseFormProps> = (
           'ant-base-form': true,
           clazzName: true,
           'form-item-no-margin': true,
-          'flex-row': horizontal,
+          // 'flex-row': horizontal,
           'flex-col': vertical,
         })}
         form={form}

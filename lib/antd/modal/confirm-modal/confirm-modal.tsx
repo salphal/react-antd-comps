@@ -65,7 +65,7 @@ const ModalMask = (props: any) => {
 
 interface MessageModalProps {
   title?: ReactNode;
-  message?: string;
+  message?: ReactNode;
   msgIconType?: MsgIconTypes;
 }
 
@@ -160,7 +160,7 @@ export interface ConfirmModalProps {
   scrollAble?: boolean;
 
   /** 弹窗消息内容 */
-  message?: string;
+  message?: ReactNode;
   /** 弹窗消息icon类型 */
   msgIconType?: MsgIconTypes;
 

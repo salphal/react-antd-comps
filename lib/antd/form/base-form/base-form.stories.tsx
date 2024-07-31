@@ -21,9 +21,8 @@ type Story = StoryObj<typeof meta>;
 
 const defaultProps: BaseFormProps = {
   form: null,
-  labelSpan: 2,
-  itemSpan: 22,
-  horizontal: false,
+  labelSpan: 6,
+  itemSpan: 18,
   vertical: true,
   labelAlign: 'left',
 };

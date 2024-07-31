@@ -5,9 +5,9 @@ import FormItem from 'antd/es/form/FormItem';
 import { Input, InputNumber, Select } from 'antd';
 
 export const BaseFormStory = React.forwardRef<any, BaseFormProps>(
-  ({ form, horizontal = false, vertical = false, ...rest }, ref) => {
+  ({ form, vertical = false, ...rest }, ref) => {
     const [formInstance] = useForm();
-    const props = { form: formInstance, horizontal, vertical, ...rest };
+    const props = { form: formInstance, vertical, ...rest };
 
     const formItemStyles = {
       // width: '33%',
