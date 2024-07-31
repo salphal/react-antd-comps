@@ -3,7 +3,14 @@ import { withoutVitePlugins } from '@storybook/builder-vite';
 
 const config: StorybookConfig = {
   /** stories 文件范围 */
-  stories: ['../lib/**/*.mdx', '../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: [
+    '../lib/**/*.mdx',
+    '../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../lib/antd/**/*.mdx',
+    '../lib/antd/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../lib/components/**/*.mdx',
+    '../lib/components/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  ],
   addons: ['@storybook/addon-essentials', '@storybook/addon-actions', '@chromatic-com/storybook'],
 
   framework: {
