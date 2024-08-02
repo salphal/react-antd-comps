@@ -10,7 +10,6 @@ import { Form, type FormProps } from 'antd';
 import type { FormInstance } from '@ant-design/pro-components';
 import classNames from 'classnames';
 import './index.scss';
-import './reset.scss';
 
 export type ColSpanType = number | string;
 
@@ -25,6 +24,8 @@ export interface BaseFormProps extends FormProps {
   /** label 文字对齐方式 */
   labelAlign?: 'left' | 'right';
 
+  /** ant-form-item 的样式 */
+  formItemStyles?: CSSProperties;
   /** 基于 flex 设置 FormItem 的布局的样式 */
   layoutStyles?: CSSProperties;
   /** 是否使用 flex-row 布局 */
@@ -37,7 +38,7 @@ export interface BaseFormProps extends FormProps {
   /** 自定义类名 */
   clazzName?: string;
   /** 子元素 */
-  children?: ReactNode;
+  children?: ((props: any) => ReactNode) | ReactNode;
 }
 
 export interface BaseFormRef {}
@@ -66,12 +67,12 @@ const BaseForm: ForwardRefRenderFunction<BaseFormRef, BaseFormProps> = (
     <React.Fragment>
       <Form
         className={classNames({
-          'form-item-no-margin': true, // 默认清除所有原生 margin
-          'ant-base-form': true,
           [clazzName]: true, // 自定义类名
-          'base-form-item-single-line': singleLine, // 是否单行, 并且不能换行
-          'base-form-item-flex-row': horizontal, // 横向排列
-          'base-form-item-flex-col': vertical, // 纵向排列
+          'item-no-margin': true, // 默认清除所有原生 margin
+          'ant-base-form': true, // 自定义类名
+          'item-single-line': singleLine, // 是否单行, 并且不能换行
+          'item-flex-row': horizontal, // 横向排列
+          'item-flex-col': vertical, // 纵向排列
         })}
         form={form}
         labelCol={{ span: labelSpan }}
@@ -82,7 +83,7 @@ const BaseForm: ForwardRefRenderFunction<BaseFormRef, BaseFormProps> = (
           className={'ant-form-layout'}
           style={{ ...layoutStyles }}
         >
-          {props.children}
+          {typeof props.children === 'function' ? props.children(props) : props.children}
         </section>
       </Form>
     </React.Fragment>

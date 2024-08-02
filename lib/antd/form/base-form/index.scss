@@ -1,9 +1,10 @@
 .ant-base-form.ant-form {
-  &.form-item-no-margin .ant-form-item {
+
+  &.item-no-margin .ant-form-item {
     margin: 0;
   }
 
-  &.base-form-item-flex-row {
+  &.item-flex-row {
     .ant-form-layout {
       padding: 12px;
       flex-direction: row;
@@ -13,11 +14,12 @@
     }
   }
 
-  &.base-form-item-flex-row.base-form-item-single-line {
+  &.item-flex-row.item-single-line {
     .ant-form-layout {
       padding: 0;
       flex-wrap: nowrap !important;
       .ant-form-item {
+        padding: 0;
         margin: 0 18px 0 0;
         &:last-child {
           margin-right: 0;
@@ -26,7 +28,7 @@
     }
   }
 
-  &.base-form-item-flex-col {
+  &.item-flex-col {
     .ant-form-layout {
       flex-direction: column;
       .ant-form-item {
