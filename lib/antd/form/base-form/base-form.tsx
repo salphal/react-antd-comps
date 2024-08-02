@@ -18,9 +18,9 @@ export interface BaseFormProps extends FormProps {
   form: FormInstance;
 
   /** label 所占的比例( 总比例 24 ) */
-  labelSpan: ColSpanType;
+  labelSpan?: ColSpanType;
   /** Form.Item 所占的比例( 总比例 24 ) */
-  itemSpan: ColSpanType;
+  itemSpan?: ColSpanType;
   /** label 文字对齐方式 */
   labelAlign?: 'left' | 'right';
 
@@ -37,6 +37,7 @@ export interface BaseFormProps extends FormProps {
 
   /** 自定义类名 */
   clazzName?: string;
+
   /** 子元素 */
   children?: ((props: any) => ReactNode) | ReactNode;
 }
