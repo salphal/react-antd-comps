@@ -35,6 +35,7 @@ export const DefaultBaseForm: Story = {
     vertical: true,
     horizontal: false,
     singleLine: false,
+    labelWidthAuto: false,
     mockDataLength: 10,
     ...defaultProps,
   },

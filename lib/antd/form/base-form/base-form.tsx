@@ -24,16 +24,18 @@ export interface BaseFormProps extends FormProps {
   /** label 文字对齐方式 */
   labelAlign?: 'left' | 'right';
 
-  /** ant-form-item 的样式 */
-  formItemStyles?: CSSProperties;
   /** 基于 flex 设置 FormItem 的布局的样式 */
   layoutStyles?: CSSProperties;
+  /** ant-form-item 的样式 */
+  formItemStyles?: CSSProperties;
   /** 是否使用 flex-row 布局 */
   horizontal?: boolean;
   /** 是否单行横向排列 */
   singleLine?: boolean;
   /** 是否使用 flex-col 布局 */
   vertical?: boolean;
+  /** label/formItem控件 宽度自适应 */
+  labelWidthAuto?: boolean;
 
   /** 自定义类名 */
   clazzName?: string;
@@ -54,9 +56,11 @@ const BaseForm: ForwardRefRenderFunction<BaseFormRef, BaseFormProps> = (
     labelSpan = 4,
     itemSpan = 20,
     layoutStyles = {},
+    formItemStyles = {},
     horizontal = false,
-    singleLine = false,
     vertical = false,
+    singleLine = false,
+    labelWidthAuto = false,
     ...restProps
   } = props;
 
@@ -71,6 +75,7 @@ const BaseForm: ForwardRefRenderFunction<BaseFormRef, BaseFormProps> = (
           [clazzName]: true, // 自定义类名
           'item-no-margin': true, // 默认清除所有原生 margin
           'ant-base-form': true, // 自定义类名
+          'item-label-width-auto': labelWidthAuto, // 自定义类名
           'item-single-line': singleLine, // 是否单行, 并且不能换行
           'item-flex-row': horizontal, // 横向排列
           'item-flex-col': vertical, // 纵向排列

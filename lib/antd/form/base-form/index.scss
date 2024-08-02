@@ -1,44 +1,20 @@
 .ant-base-form.ant-form {
+  /* 去除 formItem 自带的 margin */
   &.item-no-margin .ant-form-item {
     margin: 0;
   }
 
-  &.item-flex-row {
-    .ant-form-layout {
-      padding: 12px;
-      flex-direction: row;
-      .ant-form-item {
-        padding: 12px;
-      }
+  /** label/formItem控件 宽度自适应 */
+  &.item-label-width-auto {
+    .ant-form-item-label {
+      flex-basis: auto;
+    }
+    .ant-form-item-control {
+      max-width: 100%;
     }
   }
 
-  &.item-flex-row.item-single-line {
-    .ant-form-layout {
-      padding: 0;
-      flex-wrap: nowrap !important;
-      .ant-form-item {
-        padding: 0;
-        margin: 0 18px 0 0;
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }
-  }
-
-  &.item-flex-col {
-    .ant-form-layout {
-      flex-direction: column;
-      .ant-form-item {
-        width: 100% !important;
-        &:not(:last-child) {
-          margin-bottom: 24px;
-        }
-      }
-    }
-  }
-
+  /* 将 formItem 使用 flex 布局 */
   .ant-form-layout {
     display: flex;
     flex-wrap: wrap;
@@ -55,6 +31,45 @@
         }
 
         .ant-form-item-control {
+        }
+      }
+    }
+  }
+
+  /* formItem 横向多行布局 */
+  &.item-flex-row {
+    .ant-form-layout {
+      padding: 12px;
+      flex-direction: row;
+      .ant-form-item {
+        padding: 12px;
+      }
+    }
+  }
+
+  /** formItem 横向单行布局 */
+  &.item-flex-row.item-single-line {
+    .ant-form-layout {
+      padding: 0;
+      flex-wrap: nowrap !important;
+      .ant-form-item {
+        padding: 0;
+        margin: 0 18px 0 0;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  /* formItem 纵向布局 */
+  &.item-flex-col {
+    .ant-form-layout {
+      flex-direction: column;
+      .ant-form-item {
+        width: 100% !important;
+        &:not(:last-child) {
+          margin-bottom: 24px;
         }
       }
     }

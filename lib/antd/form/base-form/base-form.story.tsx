@@ -5,9 +5,9 @@ import FormItem from 'antd/es/form/FormItem';
 import { Input, InputNumber, Select } from 'antd';
 
 export const BaseFormStory = React.forwardRef<any, BaseFormProps>(
-  ({ form, horizontal, singleLine, vertical = false, ...rest }, ref) => {
+  ({ form, horizontal, singleLine, labelWidthAuto, vertical = false, ...rest }, ref) => {
     const [formInstance] = useForm();
-    const props = { form: formInstance, vertical, horizontal, singleLine, ...rest };
+    const props = { form: formInstance, vertical, horizontal, singleLine, labelWidthAuto, ...rest };
 
     let mockDataLength = 5;
 
