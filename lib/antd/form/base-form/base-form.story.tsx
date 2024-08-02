@@ -20,7 +20,7 @@ export const BaseFormStory = React.forwardRef<any, BaseFormProps>(
     }
 
     return (
-      <div className="story-wrap h-500 bg-gray-100">
+      <div className="story-wrap h-500">
         <BaseForm
           clazzName={'base-form-story bg-white'}
           ref={ref}
