@@ -8,10 +8,14 @@ import React, {
 import MDEditor from '@uiw/react-md-editor';
 import rehypeSanitize from 'rehype-sanitize';
 
+/**
+ * https://github.com/rehypejs/rehype-sanitize
+ */
+
 export interface MarkdownEditorProps {
-  /**  */
+  /** markdown 内容 */
   value: string;
-  /**  */
+  /** 编辑时候触发的改变事件 */
   onChange?: (value: any) => void;
   /** 编辑器高度( 默认: 100% ) */
   height?: number;
@@ -87,7 +91,7 @@ const MarkdownEditor: ForwardRefRenderFunction<MarkdownEditorRef, MarkdownEditor
         ) : (
           <MDEditor.Markdown
             source={content}
-            style={{ whiteSpace: 'pre-wrap' }}
+            style={{}}
           />
         )}
       </div>
