@@ -15,6 +15,6 @@ export const MarkdownEditorStory = React.forwardRef<any, MarkdownEditorProps>(
   },
 );
 
-MarkdownEditorStory.displayName = 'MarkdownEditorStory';
+MarkdownEditorStory.displayName = 'MarkdownEditor';
 
 export default React.memo(MarkdownEditorStory);

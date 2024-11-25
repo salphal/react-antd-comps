@@ -52,6 +52,6 @@ export const MessageModalStory = React.forwardRef<any, MessageModalProps>(
   },
 );
 
-MessageModalStory.displayName = 'MessageModalStory';
+MessageModalStory.displayName = 'MessageModal';
 
 export default React.memo(MessageModalStory);

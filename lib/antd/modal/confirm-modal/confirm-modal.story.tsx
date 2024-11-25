@@ -109,6 +109,6 @@ export const ConfirmModalStory = React.forwardRef<any, ConfirmModalProps>(
   },
 );
 
-ConfirmModalStory.displayName = 'ConfirmModalStory';
+ConfirmModalStory.displayName = 'ConfirmModal';
 
 export default React.memo(ConfirmModalStory);

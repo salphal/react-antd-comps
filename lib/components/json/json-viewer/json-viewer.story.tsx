@@ -13,6 +13,6 @@ export const JsonViewerStory = React.forwardRef<any, JsonViewerProps>(({ ...rest
   );
 });
 
-JsonViewerStory.displayName = 'JsonViewerStory';
+JsonViewerStory.displayName = 'JsonViewer';
 
 export default React.memo(JsonViewerStory);

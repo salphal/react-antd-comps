@@ -50,6 +50,6 @@ export const EditAbleTableStory = React.forwardRef<any, EditAbleCellProTableProp
   },
 );
 
-EditAbleTableStory.displayName = 'EditAbleTableStory';
+EditAbleTableStory.displayName = 'EditAbleTable';
 
 export default React.memo(EditAbleTableStory);

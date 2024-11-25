@@ -18,6 +18,6 @@ export const DraggableListStory = React.forwardRef<any, DraggableListProps>(
   },
 );
 
-DraggableListStory.displayName = 'DraggableListStory';
+DraggableListStory.displayName = 'DraggableList';
 
 export default React.memo(DraggableListStory);

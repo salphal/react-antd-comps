@@ -17,6 +17,6 @@ export const EditableRowTableStory = React.forwardRef<any, EditableRowTableProps
   },
 );
 
-EditableRowTableStory.displayName = 'EditableRowTableStory';
+EditableRowTableStory.displayName = 'EditableRowTable';
 
 export default React.memo(EditableRowTableStory);

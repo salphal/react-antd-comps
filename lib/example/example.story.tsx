@@ -56,6 +56,6 @@ export const ExampleStory = React.forwardRef<any, ExampleProps>(
 );
 
 /** 名称必须保持一致, 否则无法自动解析 */
-ExampleStory.displayName = 'ExampleStory';
+ExampleStory.displayName = 'Example';
 
 export default React.memo(ExampleStory);

@@ -46,6 +46,6 @@ export const BaseFormStory = React.forwardRef<any, BaseFormProps>(
   },
 );
 
-BaseFormStory.displayName = 'BaseFormStory';
+BaseFormStory.displayName = 'BaseForm';
 
 export default React.memo(BaseFormStory);
